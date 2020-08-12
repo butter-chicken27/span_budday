@@ -55,7 +55,7 @@ class Paddle_1(pygame.sprite.Sprite):
 class Paddle_2(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.Surface((12, 60))
+        self.image = pygame.Surface((12, 120))
         self.image.fill(WHITE)
         self.rect = self.image.get_rect(center=(SCREEN_WIDTH - 15 * 3, SCREEN_HEIGHT / 2))
     def move(self):
@@ -72,7 +72,7 @@ class Paddle_2(pygame.sprite.Sprite):
 class Brick(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.Surface((60,60))
+        self.image = pygame.Surface((100,100))
         self.image.fill(WHITE)
         self.rect = self.image.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
     def position(self, X, Y):
@@ -135,6 +135,9 @@ Br9 = Brick()
 check = []
 for v in range(9):
     check.append(0)
+collide = []
+for v in range(9):
+    collide.append(0)
 Br1.position(int(SCREEN_WIDTH * 1 / 10), int(SCREEN_HEIGHT * 2 / 10))
 Br2.position(int(SCREEN_WIDTH * 1 / 10), int(SCREEN_HEIGHT * 5 / 10))
 Br3.position(int(SCREEN_WIDTH * 1 / 10), int(SCREEN_HEIGHT * 8 / 10))
@@ -205,31 +208,49 @@ while True:
     msg_render = font.render(msg, True, RED)
     DIS.blit(msg_render, (20 * 3, 20 * 3))
     if pygame.sprite.spritecollideany(B1, w1):
-        B1.x_speed = B1.x_speed * -1
+        collide[0] = collide[0] + 1
+        if(collide[0] < 2):
+            B1.x_speed = B1.x_speed * -1
         Br1.image = pygame.image.load("image69.jpeg")
     if pygame.sprite.spritecollideany(B1, w2):
-        B1.x_speed = B1.x_speed * -1
+        collide[1] = collide[1] + 1
+        if(collide[1] < 2):
+            B1.x_speed = B1.x_speed * -1
         Br2.image = pygame.image.load("image70.jpeg")
     if pygame.sprite.spritecollideany(B1, w3):
-        B1.x_speed = B1.x_speed * -1
+        collide[2] = collide[2] + 1
+        if(collide[2] < 2):
+            B1.x_speed = B1.x_speed * -1
         Br3.image = pygame.image.load("image71.jpeg")
     if pygame.sprite.spritecollideany(B1, w4):
-        B1.x_speed = B1.x_speed * -1
+        collide[3] = collide[3] + 1
+        if(collide[3] < 2):
+            B1.x_speed = B1.x_speed * -1
         Br4.image = pygame.image.load("image72.jpeg")
     if pygame.sprite.spritecollideany(B1, w5):
-        B1.x_speed = B1.x_speed * -1
+        collide[4] = collide[4] + 1
+        if(collide[4] < 2):
+            B1.x_speed = B1.x_speed * -1
         Br5.image = pygame.image.load("image73.jpeg")
     if pygame.sprite.spritecollideany(B1, w6):
-        B1.x_speed = B1.x_speed * -1
+        collide[5] = collide[5] + 1
+        if(collide[5] < 2):
+            B1.x_speed = B1.x_speed * -1
         Br6.image = pygame.image.load("image74.jpg")
     if pygame.sprite.spritecollideany(B1, w7):
-        B1.x_speed = B1.x_speed * -1
+        collide[6] = collide[6] + 1
+        if(collide[6] < 2):
+            B1.x_speed = B1.x_speed * -1
         Br7.image = pygame.image.load("image75.jpg")
     if pygame.sprite.spritecollideany(B1, w8):
-        B1.x_speed = B1.x_speed * -1
+        collide[7] = collide[7] + 1
+        if(collide[7] < 2):
+            B1.x_speed = B1.x_speed * -1
         Br8.image = pygame.image.load("image76.jpg")
     if pygame.sprite.spritecollideany(B1, w9):
-        B1.x_speed = B1.x_speed * -1
+        collide[8] = collide[8] + 1
+        if(collide[8] < 2):
+            B1.x_speed = B1.x_speed * -1
         Br9.image = pygame.image.load("image77.jpg")
     
     if pygame.sprite.spritecollideany(B1, players):
@@ -243,7 +264,7 @@ while True:
         B1.x_speed = B1.x_speed * -1
     elif B1.rect.right > SCREEN_WIDTH:
         s_a += 1
-        if(s_a == 10):
+        if(s_a == 6):
             DIS.fill(RED)
             message = font.render("Made by panduga,", True, BLACK)
             message2 = font.render("the idiots you don't need", True, BLACK)
